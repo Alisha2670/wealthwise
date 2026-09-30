@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="WealthWise - Track Smart. Spend Wise. Grow Wealth. A modern personal finance dashboard.">
+    <title>WealthWise - Personal Finance Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            background: rgba(247, 249, 252, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+        .logo-icon {
+            color: var(--color-primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-8);
+            align-items: center;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: var(--color-text-muted);
+        }
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        .hero {
+            padding-top: calc(var(--header-height) + var(--spacing-16));
+            padding-bottom: var(--spacing-16);
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-background {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 91, 255, 0.1) 0%, rgba(247, 249, 252, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-12);
+            align-items: center;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-6);
+        }
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-8);
+            max-width: 500px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: var(--spacing-4);
+        }
+        .dashboard-mockup {
+            position: relative;
+            z-index: 10;
+        }
+        .mockup-window {
+            background: var(--color-bg-surface);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform var(--transition-slow);
+        }
+        .mockup-window:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+        .mockup-header {
+            height: 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--spacing-4);
+            gap: 6px;
+        }
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red {
+            background: #ff5f56;
+        }
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+        .dot-green {
+            background: #27c93f;
+        }
+        .mockup-body {
+            padding: var(--spacing-6);
+            display: grid;
+            gap: var(--spacing-4);
+        }
+        .mockup-card {
+            background: #f8fafc;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-4);
+            border: 1px solid var(--color-border);
+        }
+        .mockup-bar {
+            height: 8px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            margin-bottom: 8px;
+        }
+        .features {
+            background: #ffffff;
+            padding: var(--spacing-16) 0;
+        }
+        .feature-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-4);
+        }
+        .cta-section {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-16) 0;
+            text-align: center;
+            border-radius: var(--radius-xl);
+            margin: var(--spacing-16) auto;
+            max-width: 1200px;
+            width: calc(100% - var(--spacing-8));
+        }
+        .cta-section h2 {
+            color: white;
+        }
+        .footer {
+            padding: var(--spacing-10) 0;
+            border-top: 1px solid var(--color-border);
+            background: white;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .mockup-window {
+                transform: none;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container flex items-center justify-between">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-pie logo-icon"></i>
+                WealthWise
+            </a>
+            <div class="auth-buttons flex items-center gap-4">
+                <a href="login.html" class="nav-link font-medium">Log in</a>
+                <a href="signup.html" class="btn btn-primary shadow-sm">Sign up</a>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container hero-grid">
+            <div class="hero-content animate-slide-up">
+                <h1 class="hero-title">
+                    Track Smart. Spend Wise. <br><span class="text-gradient">Grow Wealth.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Take absolute control of your finances with a modern, elegant, and powerful dashboard built for
+                    those who value both aesthetics and data.
+                </p>
+                <div class="hero-actions">
+                    <a href="signup.html" class="btn btn-primary">
+                        Get Started Free <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="dashboard-mockup animate-slide-up delay-200">
+                <div class="mockup-window">
+                    <div class="mockup-header">
+                        <div class="mockup-dot dot-red"></div>
+                        <div class="mockup-dot dot-yellow"></div>
+                        <div class="mockup-dot dot-green"></div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="flex gap-4">
+                            <div class="mockup-card" style="flex: 1;">
+                                <div class="mockup-bar" style="width: 40%"></div>
+                                <div class="mockup-bar" style="width: 80%; margin-bottom: 0;"></div>
+                            </div>
+                            <div class="mockup-card" style="flex: 1;">
+                                <div class="mockup-bar" style="width: 60%"></div>
+                                <div class="mockup-bar" style="width: 50%; margin-bottom: 0;"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-card" style="height: 150px; display: flex; align-items: flex-end; gap: 8px;">
+                            <div
+                                style="width: 100%; background: var(--color-primary-light); height: 40%; border-radius: 4px 4px 0 0;">
+                            </div>
+                            <div
+                                style="width: 100%; background: var(--color-primary); height: 80%; border-radius: 4px 4px 0 0;">
+                            </div>
+                            <div
+                                style="width: 100%; background: var(--color-primary-light); height: 60%; border-radius: 4px 4px 0 0;">
+                            </div>
+                            <div
+                                style="width: 100%; background: var(--color-primary); height: 90%; border-radius: 4px 4px 0 0;">
+                            </div>
+                            <div
+                                style="width: 100%; background: var(--color-primary-light); height: 50%; border-radius: 4px 4px 0 0;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="features">
+        <div class="container">
+            <div class="text-center mb-8 animate-slide-up delay-100">
+                <h2>Everything you need, in one place</h2>
+                <p class="text-muted" style="max-width: 600px; margin: 0 auto;">No more spreadsheets. WealthWise gives
+                    you beautifully designed tools to manage every aspect of your financial life.</p>
+            </div>
+            <div class="grid grid-cols-3 gap-8 mt-8">
+                <div class="card animate-slide-up delay-200">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Visualize your cash flow with stunning, interactive charts. Understand your spending habits at a
+                        glance.</p>
+                </div>
+                <div class="card animate-slide-up delay-300">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <h3>Smart Budgeting</h3>
+                    <p>Create dynamic budgets that adapt to your lifestyle. Stay on track with automated alerts and
+                        progress bars.</p>
+                </div>
+                <div class="card animate-slide-up delay-400">
+                    <div class="feature-icon-wrapper">
+                        <i class="fa-solid fa-rotate"></i>
+                    </div>
+                    <h3>Subscription Tracker</h3>
+                    <p>Never pay for an unused service again. Keep track of all your recurring expenses in one clean
+                        list.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section animate-slide-up">
+        <div class="container">
+            <h2 class="mb-4">Ready to master your finances?</h2>
+            <p class="mb-8"
+                style="max-width: 500px; margin-left: auto; margin-right: auto; color: var(--color-text-light);">Join
+                thousands of smart planners who are already using WealthWise to secure their financial freedom.</p>
+            <a href="signup.html" class="btn btn-primary" style="background: white; color: var(--color-secondary);">
+                Create your free account
+            </a>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie logo-icon"></i>
+                <span style="font-size: 1.25rem;">WealthWise</span>
+            </div>
+            <div class="text-muted font-medium text-sm">
+                &copy; 2026 WealthWise Inc. All rights reserved.
+            </div>
+            <div class="flex gap-4 text-muted">
+                <a href="#" class="text-muted"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-muted"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="text-muted"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/helpers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
