@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expense Management - WealthWise">
+    <title>Expenses - WealthWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-brand">
+                    <i class="fa-solid fa-chart-pie"></i> WealthWise
+                </a>
+                <button id="close-sidebar-btn" class="close-sidebar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Overview</div>
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Analytics
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Management</div>
+                <a href="income.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Income
+                </a>
+                <a href="expenses.html" class="nav-item active">
+                    <i class="fa-solid fa-arrow-trend-down"></i> Expenses
+                </a>
+                <a href="budget.html" class="nav-item">
+                    <i class="fa-solid fa-wallet"></i> Budget Planner
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Tools</div>
+                <a href="todo.html" class="nav-item">
+                    <i class="fa-solid fa-check-square"></i> Finance Tasks
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fa-solid fa-calendar"></i> Calendar
+                </a>
+                <a href="settings.html" class="nav-item" style="margin-top: 1.5rem;">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email">john.doe@example.com</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-navbar">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="nav-actions">
+                    <button class="action-btn">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-avatar" style="width: 36px; height: 36px; cursor: pointer; font-size: 14px;">JD
+                    </div>
+                </div>
+            </header>
+            <div class="dashboard-container">
+                <div class="page-header animate-slide-up">
+                    <div>
+                        <h1 style="margin-bottom: 0.25rem;">Expenses</h1>
+                        <p class="text-muted" style="margin-bottom: 0;">Monitor where your money goes.</p>
+                    </div>
+                </div>
+                <div class="page-summary-grid animate-slide-up delay-100" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="card metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Spent</span>
+                            <div class="metric-icon icon-danger"><i class="fa-solid fa-credit-card"></i></div>
+                        </div>
+                        <div class="metric-value" id="expense-total">₹3,420.20</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Highest Category</span>
+                            <div class="metric-icon icon-warning"><i class="fa-solid fa-basket-shopping"></i></div>
+                        </div>
+                        <div class="metric-value" id="expense-highest-category">Housing</div>
+                    </div>
+                </div>
+                <div class="filter-bar animate-slide-up delay-200">
+                    <div class="filter-group">
+                        <select id="filter-source" class="form-control"
+                            style="width: 150px; padding: 8px 12px; font-size: 14px;">
+                            <option>All Categories</option>
+                            <option>Housing</option>
+                            <option>Food & Dining</option>
+                            <option>Transportation</option>
+                            <option>Entertainment</option>
+                            <option>Utilities</option>
+                            <option>Healthcare</option>
+                            <option>Personal</option>
+                            <option>Savings</option>
+                            <option>Other</option>
+                        </select>
+                        <select id="filter-time" class="form-control"
+                            style="width: 150px; padding: 8px 12px; font-size: 14px;">
+                            <option selected>All Time</option>
+                            <option>This Month</option>
+                            <option>Last Month</option>
+                            <option>This Year</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;"><i
+                            class="fa-solid fa-file-export"></i> Export CSV</button>
+                </div>
+                <div class="data-table-container animate-slide-up delay-300">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Merchant / Description</th>
+                                <th>Category</th>
+                                <th>Method</th>
+                                <th style="text-align: right;">Amount</th>
+                                <th style="text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Oct 20, 2026</td>
+                                <td>
+                                    <div class="font-medium text-main">Whole Foods Market</div>
+                                    <div class="text-xs text-muted">Groceries</div>
+                                </td>
+                                <td>Food & Dining</td>
+                                <td><i class="fa-brands fa-cc-visa" style="color: #1a1f71;"></i> •••• 4242</td>
+                                <td style="text-align: right; font-weight: 600; color: var(--color-danger);">-₹124.50
+                                </td>
+                                <td style="text-align: center;">
+                                    <button class="action-btn"
+                                        style="display:inline-flex; width:32px; height:32px; margin: 0 auto;"><i
+                                            class="fa-solid fa-ellipsis"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oct 18, 2026</td>
+                                <td>
+                                    <div class="font-medium text-main">Shell Station</div>
+                                    <div class="text-xs text-muted">Gas</div>
+                                </td>
+                                <td>Transportation</td>
+                                <td><i class="fa-brands fa-cc-mastercard" style="color: #eb001b;"></i> •••• 8844</td>
+                                <td style="text-align: right; font-weight: 600; color: var(--color-danger);">-₹45.00
+                                </td>
+                                <td style="text-align: center;">
+                                    <button class="action-btn"
+                                        style="display:inline-flex; width:32px; height:32px; margin: 0 auto;"><i
+                                            class="fa-solid fa-ellipsis"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oct 15, 2026</td>
+                                <td>
+                                    <div class="font-medium text-main">Netflix</div>
+                                    <div class="text-xs text-muted">Monthly Plan</div>
+                                </td>
+                                <td>Entertainment</td>
+                                <td><i class="fa-brands fa-paypal" style="color: #00457c;"></i> PayPal</td>
+                                <td style="text-align: right; font-weight: 600; color: var(--color-danger);">-₹15.99
+                                </td>
+                                <td style="text-align: center;">
+                                    <button class="action-btn"
+                                        style="display:inline-flex; width:32px; height:32px; margin: 0 auto;"><i
+                                            class="fa-solid fa-ellipsis"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oct 01, 2026</td>
+                                <td>
+                                    <div class="font-medium text-main">Downtown Apartments</div>
+                                    <div class="text-xs text-muted">Rent</div>
+                                </td>
+                                <td>Housing</td>
+                                <td><i class="fa-solid fa-building-columns"></i> Bank Transfer</td>
+                                <td style="text-align: right; font-weight: 600; color: var(--color-danger);">-₹1,800.00
+                                </td>
+                                <td style="text-align: center;">
+                                    <button class="action-btn"
+                                        style="display:inline-flex; width:32px; height:32px; margin: 0 auto;"><i
+                                            class="fa-solid fa-ellipsis"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/expenses.js"></script>
+    <script src="js/export.js"></script>
+</body>
+</html>
