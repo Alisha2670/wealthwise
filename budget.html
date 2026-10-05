@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Budget Planner - WealthWise">
+    <title>Budget Planner - WealthWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-brand">
+                    <i class="fa-solid fa-chart-pie"></i> WealthWise
+                </a>
+                <button id="close-sidebar-btn" class="close-sidebar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Overview</div>
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Analytics
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Management</div>
+                <a href="income.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Income
+                </a>
+                <a href="expenses.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-down"></i> Expenses
+                </a>
+                <a href="budget.html" class="nav-item active">
+                    <i class="fa-solid fa-wallet"></i> Budget Planner
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Tools</div>
+                <a href="todo.html" class="nav-item">
+                    <i class="fa-solid fa-check-square"></i> Finance Tasks
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fa-solid fa-calendar"></i> Calendar
+                </a>
+                <a href="settings.html" class="nav-item" style="margin-top: 1.5rem;">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email">john.doe@example.com</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-navbar">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="nav-actions">
+                    <button class="action-btn">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-avatar" style="width: 36px; height: 36px; cursor: pointer; font-size: 14px;">JD</div>
+                </div>
+            </header>
+            <div class="dashboard-container">
+                <div class="page-header animate-slide-up">
+                    <div>
+                        <h1 style="margin-bottom: 0.25rem;">Budget Planner</h1>
+                        <p class="text-muted" style="margin-bottom: 0;">Stay on track and save more money.</p>
+                    </div>
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Budget</button>
+                </div>
+                <div class="page-summary-grid animate-slide-up delay-100">
+                    <div class="card metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Monthly Budget</span>
+                            <div class="metric-icon icon-primary"><i class="fa-solid fa-vault"></i></div>
+                        </div>
+                        <div class="metric-value">₹5,000.00</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Total Spent</span>
+                            <div class="metric-icon icon-danger"><i class="fa-solid fa-fire"></i></div>
+                        </div>
+                        <div class="metric-value">₹3,420.20</div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Remaining</span>
+                            <div class="metric-icon icon-success"><i class="fa-solid fa-piggy-bank"></i></div>
+                        </div>
+                        <div class="metric-value">₹1,579.80</div>
+                    </div>
+                </div>
+                <div class="chart-header animate-slide-up delay-200 mt-8 mb-4">
+                    <h3 class="chart-title" style="margin: 0; color: var(--color-secondary);">Category Breakdown</h3>
+                </div>
+                <div class="grid grid-cols-3 gap-6 animate-slide-up delay-300">
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="metric-icon icon-primary" style="width:36px; height:36px; font-size:1rem;"><i class="fa-solid fa-house"></i></div>
+                                <div>
+                                    <h4 style="margin:0; font-size:var(--font-size-sm); color:var(--color-secondary);">Housing & Rent</h4>
+                                    <span class="status-pill status-success" style="font-size:9px; padding:2px 8px; margin-top:4px;">On Track</span>
+                                </div>
+                            </div>
+                            <button class="action-btn" style="width:32px; height:32px;"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bg-success" style="width: 90%;"></div>
+                        </div>
+                        <div class="budget-stats">
+                            <span>Spent: ₹1,800</span>
+                            <span class="font-medium" style="color:var(--color-secondary);">Total: ₹2,000</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="metric-icon icon-warning" style="width:36px; height:36px; font-size:1rem;"><i class="fa-solid fa-utensils"></i></div>
+                                <div>
+                                    <h4 style="margin:0; font-size:var(--font-size-sm); color:var(--color-secondary);">Food & Dining</h4>
+                                    <span class="status-pill status-warning" style="font-size:9px; padding:2px 8px; margin-top:4px;">Near Limit</span>
+                                </div>
+                            </div>
+                            <button class="action-btn" style="width:32px; height:32px;"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bg-warning" style="width: 85%;"></div>
+                        </div>
+                        <div class="budget-stats">
+                            <span>Spent: ₹680</span>
+                            <span class="font-medium" style="color:var(--color-secondary);">Total: ₹800</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="metric-icon icon-danger" style="width:36px; height:36px; font-size:1rem;"><i class="fa-solid fa-film"></i></div>
+                                <div>
+                                    <h4 style="margin:0; font-size:var(--font-size-sm); color:var(--color-secondary);">Entertainment</h4>
+                                    <span class="status-pill status-danger" style="font-size:9px; padding:2px 8px; margin-top:4px;">Over Budget</span>
+                                </div>
+                            </div>
+                            <button class="action-btn" style="width:32px; height:32px;"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bg-danger" style="width: 100%;"></div>
+                        </div>
+                        <div class="budget-stats">
+                            <span style="color:var(--color-danger);">Spent: ₹320</span>
+                            <span class="font-medium" style="color:var(--color-secondary);">Total: ₹300</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="metric-icon" style="background:#e0f2fe; color:#0284c7; width:36px; height:36px; font-size:1rem;"><i class="fa-solid fa-car"></i></div>
+                                <div>
+                                    <h4 style="margin:0; font-size:var(--font-size-sm); color:var(--color-secondary);">Transportation</h4>
+                                    <span class="status-pill status-success" style="font-size:9px; padding:2px 8px; margin-top:4px;">On Track</span>
+                                </div>
+                            </div>
+                            <button class="action-btn" style="width:32px; height:32px;"><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar bg-success" style="width: 45%;"></div>
+                        </div>
+                        <div class="budget-stats">
+                            <span>Spent: ₹180</span>
+                            <span class="font-medium" style="color:var(--color-secondary);">Total: ₹400</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="budget-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000;">
+                <div class="modal-content animate-slide-up" style="background: white; padding: 24px; border-radius: 12px; width: 100%; max-width: 400px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                        <h3 id="budget-modal-title" style="margin: 0;">Create Budget</h3>
+                        <button id="close-budget-btn" style="background:none; border:none; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <form id="budget-form">
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label class="form-label">Category Name</label>
+                            <select id="budget-category" class="form-control" required style="padding: 10px; font-size: 15px;">
+                            <option value="" disabled selected>Select a Category...</option>
+                            <optgroup label="Income">
+                                <option value="Salary">Salary</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Investments">Investments</option>
+                            </optgroup>
+                            <optgroup label="Expenses & Budgets">
+                                <option value="Housing">Housing</option>
+                                <option value="Food & Dining">Food & Dining</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Savings">Savings</option>
+                                <option value="Other">Other</option>
+                            </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 24px;">
+                            <label class="form-label">Monthly Limit</label>
+                            <input type="number" id="budget-limit" class="form-control" placeholder="e.g. 1500" required>
+                        </div>
+                        <input type="hidden" id="edit-budget-id" value="">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Save Budget</button>
+                        <button type="button" id="delete-budget-btn" class="btn" style="width: 100%; margin-top: 12px; background: transparent; color: var(--color-danger); border: 1px solid var(--color-danger); display: none;">Delete Budget</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/budget.js"></script>
+</body>
+</html>
