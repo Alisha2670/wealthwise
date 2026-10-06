@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analytics & Reports - WealthWise">
+    <title>Analytics - WealthWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--color-primary) 0% 40%,
+                var(--color-warning) 40% 65%,
+                var(--color-danger) 65% 85%,
+                #e2e8f0 85% 100%
+            );
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .donut-hole {
+            width: 130px;
+            height: 130px;
+            background: var(--color-bg-surface);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .legend-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--font-size-sm);
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-brand">
+                    <i class="fa-solid fa-chart-pie"></i> WealthWise
+                </a>
+                <button id="close-sidebar-btn" class="close-sidebar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Overview</div>
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="analytics.html" class="nav-item active">
+                    <i class="fa-solid fa-chart-line"></i> Analytics
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Management</div>
+                <a href="income.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Income
+                </a>
+                <a href="expenses.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-down"></i> Expenses
+                </a>
+                <a href="budget.html" class="nav-item">
+                    <i class="fa-solid fa-wallet"></i> Budget Planner
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Tools</div>
+                <a href="todo.html" class="nav-item">
+                    <i class="fa-solid fa-check-square"></i> Finance Tasks
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fa-solid fa-calendar"></i> Calendar
+                </a>
+                <a href="settings.html" class="nav-item" style="margin-top: 1.5rem;">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email">john.doe@example.com</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-navbar">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="nav-actions">
+                    <button class="action-btn">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-avatar" style="width: 36px; height: 36px; cursor: pointer; font-size: 14px;">JD</div>
+                </div>
+            </header>
+            <div class="dashboard-container">
+                <div class="page-header animate-slide-up">
+                    <div>
+                        <h1 style="margin-bottom: 0.25rem;">Analytics & Reports</h1>
+                        <p class="text-muted" style="margin-bottom: 0;">Deep dive into your financial data.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-download"></i> Download Report</button>
+                    </div>
+                </div>
+                <div class="card animate-slide-up delay-100 mb-8" style="padding: var(--spacing-6);">
+                    <div class="chart-header" style="margin-bottom: var(--spacing-6);">
+                        <div>
+                            <h3 class="chart-title" style="color: var(--color-secondary);">Current Month Cash Flow</h3>
+                            <p class="text-muted text-xs" style="margin-bottom:0;">Total Income vs Expenses for this month</p>
+                        </div>
+                    </div>
+                    <div class="flex-col gap-6" style="padding: 0 var(--spacing-4);">
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <span class="font-medium text-main">Total Income</span>
+                                <span class="font-bold" style="color: var(--color-success);" id="analytics-income-label">₹0.00</span>
+                            </div>
+                            <div class="progress-container" style="height: 24px; background: rgba(0, 217, 36, 0.1); margin-bottom: 0;">
+                                <div id="analytics-income-bar" class="progress-bar" style="width: 0%; background: var(--color-success); transition: width 1s ease-out;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <span class="font-medium text-main">Total Expenses</span>
+                                <span class="font-bold" style="color: var(--color-danger);" id="analytics-expense-label">₹0.00</span>
+                            </div>
+                            <div class="progress-container" style="height: 24px; background: rgba(255, 66, 66, 0.1); margin-bottom: 0;">
+                                <div id="analytics-expense-bar" class="progress-bar" style="width: 0%; background: var(--color-danger); transition: width 1s ease-out;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-8 animate-slide-up delay-200">
+                    <div class="card">
+                        <h3 class="chart-title mb-6" style="color: var(--color-secondary);">Expense Distribution</h3>
+                        <div class="flex flex-col items-center gap-8">
+                            <div class="donut-chart mt-4">
+                                <div class="donut-hole">
+                                    <span class="text-muted text-xs">Total</span>
+                                    <span class="metric-value" style="font-size: var(--font-size-xl); margin:0;">₹3,420</span>
+                                </div>
+                            </div>
+                            <div class="legend-list" style="width: 100%;">
+                                <div class="legend-item">
+                                    <div><span class="legend-color" style="background: var(--color-primary);"></span> Housing</div>
+                                    <span class="font-medium text-main">40% (₹1,800)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div><span class="legend-color" style="background: var(--color-warning);"></span> Food & Dining</div>
+                                    <span class="font-medium text-main">25% (₹680)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div><span class="legend-color" style="background: var(--color-danger);"></span> Entertainment</div>
+                                    <span class="font-medium text-main">20% (₹320)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div><span class="legend-color" style="background: #e2e8f0;"></span> Other</div>
+                                    <span class="font-medium text-main">15% (₹620)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="chart-title mb-6" style="color: var(--color-secondary);">Top Merchants</h3>
+                        <div class="flex flex-col gap-6">
+                            <div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-building-columns text-muted" style="width: 20px; text-align: center;"></i>
+                                        <span class="font-medium text-main">Downtown Apartments</span>
+                                    </div>
+                                    <span class="font-medium text-main">₹1,800.00</span>
+                                </div>
+                                <div class="progress-container" style="margin: 0; background: var(--color-bg-body);">
+                                    <div class="progress-bar bg-primary" style="width: 52%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-cart-shopping text-muted" style="width: 20px; text-align: center;"></i>
+                                        <span class="font-medium text-main">Whole Foods</span>
+                                    </div>
+                                    <span class="font-medium text-main">₹450.00</span>
+                                </div>
+                                <div class="progress-container" style="margin: 0; background: var(--color-bg-body);">
+                                    <div class="progress-bar bg-warning" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-gas-pump text-muted" style="width: 20px; text-align: center;"></i>
+                                        <span class="font-medium text-main">Shell Station</span>
+                                    </div>
+                                    <span class="font-medium text-main">₹180.00</span>
+                                </div>
+                                <div class="progress-container" style="margin: 0; background: var(--color-bg-body);">
+                                    <div class="progress-bar" style="width: 8%; background: #0ea5e9;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-bolt text-muted" style="width: 20px; text-align: center;"></i>
+                                        <span class="font-medium text-main">Electric Utility</span>
+                                    </div>
+                                    <span class="font-medium text-main">₹145.00</span>
+                                </div>
+                                <div class="progress-container" style="margin: 0; background: var(--color-bg-body);">
+                                    <div class="progress-bar" style="width: 7%; background: #8b5cf6;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center text-sm mb-2">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-brands fa-apple text-muted" style="width: 20px; text-align: center;"></i>
+                                        <span class="font-medium text-main">Apple Services</span>
+                                    </div>
+                                    <span class="font-medium text-main">₹65.00</span>
+                                </div>
+                                <div class="progress-container" style="margin: 0; background: var(--color-bg-body);">
+                                    <div class="progress-bar" style="width: 3%; background: #64748b;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/export.js"></script>
+</body>
+</html>
