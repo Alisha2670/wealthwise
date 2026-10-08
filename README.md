@@ -5,6 +5,46 @@
 
 ---
 
+## 📋 Project Proposal
+
+### 1. Project Description
+**WealthWise** is a lightweight, client-side personal finance web application designed to empower individuals to take full control over their financial health. Traditional finance platforms often require server registrations, subscription fees, or compromise user privacy through third-party data tracking. WealthWise solves these challenges by providing an offline-first, client-side management hub where users can monitor cash flow, plan category budgets, organize financial tasks, and gain visual insights into their spending habits—completely private and running directly within the browser.
+
+### 2. Goals & Objectives
+* **Privacy-First Personal Accounting**: Guarantee 100% data confidentiality by persisting all records locally on the user's device via HTML5 Web Storage without external databases or tracking telemetry.
+* **Complete CRUD Lifecycle**: Implement full Create, Read, Update, and Delete operations across all key financial entities (transactions, budget allocations, actionable tasks, and user profiles).
+* **Zero External JS Dependencies**: Prove that modern, enterprise-grade web applications with interactive dashboards, dynamic charts, and background data processing can be constructed entirely using native web fundamentals (HTML5, CSS3, Vanilla ES6+ JS).
+* **Asynchronous Multithreaded Processing**: Utilize HTML5 Web Workers to delegate data processing (such as CSV compilation) to background threads, guaranteeing smooth 60 FPS UI performance.
+* **Universal Accessibility & Responsiveness**: Provide an intuitive, responsive interface optimized across mobile handsets, tablets, and desktop workstations.
+
+### 3. Specifications
+
+#### Functional Specifications
+* **Authentication & Profile Scoping**: Client-side sign-up and sign-in ensuring distinct transaction, budget, and task records for every registered account.
+* **Inflow & Outflow Tracking**: Real-time logging of incomes and expenses with categories, dates, and amounts, accompanied by dynamic filtering.
+* **Budget Limits & Threshold Alerts**: Customizable monthly category allowances with dynamic status badges: *On Track* (< 80%), *Warning* (80%–99%), and *Over Budget* (≥ 100%).
+* **Interactive Calendar**: 7-column calendar projection visualizing upcoming payment deadlines, income dates, and bill reminders.
+* **Actionable Checklist**: Financial task manager with status toggles (pending/completed) and priority tags (`Bills`, `Goals`, `General`).
+* **RFC-4180 CSV Data Export**: Multithreaded background export of transaction ledgers to CSV format for external analysis in Excel or Google Sheets.
+
+#### Technical Specifications
+* **Markup**: Semantic HTML5 (`<header>`, `<nav>`, `<aside>`, `<main>`, `<section>`, `<form>`, `<dialog>`).
+* **Styling**: CSS3 Design Tokens (CSS Variables), modern **CSS Grid** and **Flexbox**, keyframe animations, and glassmorphic blur effects (`backdrop-filter`).
+* **Scripting**: Vanilla JavaScript (ES6+ modular logic, event delegation, dynamic DOM rendering).
+* **Storage Engine**: HTML5 `localStorage` API for reliable data persistence across sessions.
+* **Background Threading**: HTML5 **Web Workers API** (`DedicatedWorkerGlobalScope`) via dynamic `Blob` URLs for non-blocking file compilation.
+* **Compatibility**: Standardized for all modern evergreen browsers (Chrome, Edge, Firefox, Safari) with zero build tools or compilers required.
+
+### 4. UI/UX Design & Architecture
+* **Design Philosophy**: Clean, dark/light theme-adaptive user interface with modern glassmorphism, ergonomic card layouts, high-contrast typography, and intuitive color-coded status indicators (emerald green for inflows/success, crimson red for outflows/over-budget, amber for warnings).
+* **Information Architecture**:
+  * **Landing Page (`index.html`)**: Product introduction, feature highlights, and call-to-actions.
+  * **Auth Flow (`login.html`, `signup.html`)**: Streamlined onboarding and session initialization.
+  * **Core Hub (`dashboard.html`)**: Instant KPI balance metrics, quick transaction entry modal, and recent feeds.
+  * **Management Views (`income.html`, `expenses.html`, `budget.html`, `calendar.html`, `todo.html`, `analytics.html`, `settings.html`)**: Dedicated sub-pages for granular tracking, interactive calendar planning, and profile management.
+
+---
+
 ## 📌 Project Overview
 
 **WealthWise** is a client-side personal finance web application designed to help individuals monitor cash flow, plan category budgets, organize financial tasks, and gain visual insights into their spending habits. 
@@ -43,9 +83,11 @@ Running 100% in the browser with **HTML5 Web Storage (`localStorage`)**, WealthW
 * **Actionable Checklist**: Keep track of pending bills, tax filings, and savings goals.
 * **Priority Tags**: Label tasks as `Goals`, `Bills`, or custom categories.
 
-### 📥 One-Click CSV Data Export
-* **Instant Download**: Export your complete transaction history into an RFC-4180 compliant `.csv` file.
-* **Spreadsheet Ready**: Open directly in Microsoft Excel, Google Sheets, or Apple Numbers.
+### 📥 One-Click CSV Data Export (Powered by HTML5 Web Workers)
+* **Asynchronous Web Worker Engine**: Export compilation and RFC-4180 string formatting run in a dedicated background thread via the **HTML5 Web Workers API**, preventing UI freeze or main-thread latency even with large transaction histories.
+* **In-Memory Dynamic Worker Generation**: Spawned dynamically using `Blob` and `URL.createObjectURL`, ensuring zero external script files or CORS restrictions.
+* **Resilient Main-Thread Fallback**: Seamless fallback to standard main-thread compilation if Web Workers are restricted by browser security policies.
+* **Spreadsheet Ready**: Generates standard `.csv` files ready to import directly into Microsoft Excel, Google Sheets, or Apple Numbers.
 
 ### 🌓 Dark / Light Theme
 * **One-Click Toggle**: Switch between clean Light mode and sleek Dark mode (`#0a0c10` / `#12151c`).
@@ -62,6 +104,7 @@ Running 100% in the browser with **HTML5 Web Storage (`localStorage`)**, WealthW
 * **HTML5**: Semantic document structure (`<header>`, `<nav>`, `<aside>`, `<main>`, `<section>`, `<form>`).
 * **CSS3**: Modern layouts using **CSS Grid** and **Flexbox**, CSS custom variables (design tokens), smooth keyframe animations, and glassmorphic blur effects (`backdrop-filter`).
 * **Vanilla JavaScript (ES6+)**: Pure JS for state management, DOM manipulation, date math, chart calculation, and CSV generation.
+* **HTML5 Web Workers API**: Background multithreading for asynchronous, non-blocking CSV export generation.
 * **Storage Engine**: HTML5 `localStorage` API for reliable, offline data persistence.
 * **Zero External JS Libraries**: No React, jQuery, Bootstrap JS, or Chart.js. Everything is built from scratch.
 
@@ -122,7 +165,7 @@ WealthWisep/
     ├── theme.js        # Dark / Light mode controller & persistence
     ├── auth.js         # Authentication, registration & session guard
     ├── app.js          # App bootstrapper & mobile sidebar toggle
-    ├── export.js       # RFC-4180 CSV export generator
+    ├── export.js       # RFC-4180 CSV export generator using HTML5 Web Workers
     ├── dashboard.js    # KPI mathematics & transaction entry modal
     ├── analytics.js    # Conic-gradient chart math & top merchants
     ├── income.js       # Inflow transaction table & filtering
