@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="User Settings - WealthWise">
+    <title>Settings - WealthWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: var(--spacing-8);
+            align-items: start;
+        }
+
+        .settings-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .settings-nav-item {
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .settings-nav-item:hover {
+            background: var(--color-bg-body);
+            color: var(--color-text-main);
+        }
+
+        .settings-nav-item.active {
+            background: var(--color-bg-surface);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .settings-panel {
+            background: var(--color-bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border);
+            padding: 32px;
+        }
+
+        .settings-panel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .settings-form-group {
+            margin-bottom: 24px;
+        }
+
+        .settings-form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            color: var(--color-text-main);
+            margin-bottom: 8px;
+        }
+
+        .settings-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .settings-row .settings-form-group {
+            flex: 1;
+        }
+
+        .avatar-uploader {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-border);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input:checked + .slider {
+            background-color: var(--color-success);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .settings-toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .settings-toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .settings-toggle-info h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-main);
+            margin-bottom: 4px;
+        }
+
+        .settings-toggle-info p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-nav {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+
+            .settings-nav-item {
+                white-space: nowrap;
+            }
+
+            .settings-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-brand">
+                    <i class="fa-solid fa-chart-pie"></i> WealthWise
+                </a>
+                <button id="close-sidebar-btn" class="close-sidebar-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Overview</div>
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Analytics
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Management</div>
+                <a href="income.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Income
+                </a>
+                <a href="expenses.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-trend-down"></i> Expenses
+                </a>
+                <a href="budget.html" class="nav-item">
+                    <i class="fa-solid fa-wallet"></i> Budget Planner
+                </a>
+                <div class="nav-section-title" style="margin-top: 1.5rem;">Tools</div>
+                <a href="todo.html" class="nav-item">
+                    <i class="fa-solid fa-check-square"></i> Finance Tasks
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <i class="fa-solid fa-calendar"></i> Calendar
+                </a>
+                <a href="settings.html" class="nav-item active" style="margin-top: 1.5rem;">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-email">john.doe@example.com</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-navbar">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="nav-actions">
+                    <button class="action-btn">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-avatar" style="width: 36px; height: 36px; cursor: pointer; font-size: 14px;">JD</div>
+                </div>
+            </header>
+            <div class="dashboard-container">
+                <div class="page-header animate-slide-up">
+                    <div>
+                        <h1 style="margin-bottom: 0.25rem;">Settings</h1>
+                        <p class="text-muted" style="margin-bottom: 0;">Manage your account preferences and integrations.</p>
+                    </div>
+                </div>
+                <div class="settings-layout animate-slide-up delay-100">
+                    <div class="settings-nav">
+                        <div class="settings-nav-item active"><i class="fa-regular fa-user"></i> Profile</div>
+                        <div class="settings-nav-item"><i class="fa-solid fa-lock"></i> Password</div>
+                        <div class="settings-nav-item text-danger" id="logout-btn" style="margin-top: 12px; cursor: pointer;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</div>
+                    </div>
+                    <div class="settings-panel">
+                        <div id="section-profile">
+                            <h2 class="settings-panel-title">Public Profile</h2>
+                            <div class="avatar-uploader" style="display: flex; justify-content: center; margin-bottom: var(--spacing-6);">
+                                <div class="avatar-preview">JD</div>
+                            </div>
+                            <form id="form-profile">
+                                <div class="settings-row">
+                                    <div class="settings-form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="John" readonly style="background: var(--color-bg-body); cursor: default;">
+                                    </div>
+                                    <div class="settings-form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="Doe" readonly style="background: var(--color-bg-body); cursor: default;">
+                                    </div>
+                                </div>
+                                <div class="settings-form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" class="form-control" value="john.doe@example.com" readonly style="background: var(--color-bg-body); cursor: default;">
+                                </div>
+                            </form>
+                            <div class="settings-toggle-row" style="margin-top: 32px; border-top: 1px solid var(--color-border); padding-top: 24px;">
+                                <div class="settings-toggle-info">
+                                    <h4>Dark Mode</h4>
+                                    <p>Switch between light and dark theme.</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox"> 
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="section-password" style="display: none;">
+                            <h2 class="settings-panel-title">Change Password</h2>
+                            <form id="form-password">
+                                <div class="settings-row" style="margin-top: 16px;">
+                                    <div class="settings-form-group">
+                                        <label>New Password</label>
+                                        <input type="password" id="input-new-password" class="form-control" placeholder="Enter new password">
+                                    </div>
+                                    <div class="settings-form-group">
+                                        <label>Confirm Password</label>
+                                        <input type="password" id="input-confirm-password" class="form-control" placeholder="Confirm new password">
+                                    </div>
+                                </div>
+                                <div style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+                                    <button type="button" class="btn btn-primary" id="save-password-btn">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
