@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupDashboardTasks();
 });
 
+// Compute real-time KPI metrics (Balance, Income, Expenses) and refresh dashboard feeds
 function loadDashboardData() {
     const user = getCurrentUser();
     if (!user) return;
@@ -17,7 +18,7 @@ function loadDashboardData() {
 
     let totalIncome = 0;
     let totalExpenses = 0;
-
+// Aggregate total inflows and outflows from user's transaction ledger
     if (user.transactions && user.transactions.length > 0) {
         user.transactions.forEach((tx) => {
             if (tx.type === "income") totalIncome += tx.amount;
@@ -38,6 +39,7 @@ function loadDashboardData() {
     renderCashFlowChart(user.transactions);
 }
 
+// Sort transaction records newest-first and render the 4 most recent activity feed items
 function renderRecentTransactions(transactions) {
     const listEl = document.querySelector(".transaction-list");
     if (!listEl) return;
@@ -83,6 +85,7 @@ function renderRecentTransactions(transactions) {
     });
 }
 
+// Build a rolling 5-month comparison projection and scale bar heights relative to peak income
 function renderCashFlowChart(transactions) {
     const chart = document.getElementById("cashflow-chart");
     const labels = document.getElementById("cashflow-labels");
@@ -160,6 +163,7 @@ function renderCashFlowChart(transactions) {
     });
 }
 
+// Initialize modal controls and validate new transaction entries with auto-recalculation
 function setupTransactionModal() {
     const addBtn = document.getElementById("add-tx-btn");
     const overlay = document.getElementById("tx-modal-overlay");
@@ -218,6 +222,7 @@ function setupTransactionModal() {
     });
 }
 
+// Handle quick task creation and bind click events to toggle task completion status
 function setupDashboardTasks() {
     const taskForm = document.getElementById("dash-task-form");
     if (!taskForm) return;
@@ -268,6 +273,7 @@ function setupDashboardTasks() {
     });
 }
 
+// Render top 5 priority tasks, prioritizing pending items over completed ones
 function renderDashboardTasks(user) {
     const listEl = document.getElementById("dash-task-list");
     if (!listEl) return;

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupAuthForms();
     setupLogoutButton();
 });
-
+// Attach submit listeners to authentication forms and route to login or signup handler
 function setupAuthForms() {
     const authForm = document.querySelector(".auth-form");
     if (!authForm) return;
@@ -18,6 +18,7 @@ function setupAuthForms() {
     });
 }
 
+// Validate registration input, enforce unique email constraint, and initialize empty ledger
 function handleSignup() {
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
@@ -48,6 +49,7 @@ function handleSignup() {
     window.location.href = "dashboard.html";
 }
 
+// Authenticate user credentials against stored accounts and initialize active session
 function handleLogin() {
     const emailValue = document.getElementById("email").value.trim();
     const passwordValue = document.getElementById("password").value;
@@ -64,6 +66,7 @@ function handleLogin() {
     }
 }
 
+// Terminate active user session by clearing storage and redirecting to landing page
 function setupLogoutButton() {
     const logoutBtn = document.getElementById("logout-btn");
     if (!logoutBtn) return;

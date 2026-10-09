@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTabs();
 });
 
+// Populate read-only account profile inputs with user's name and registered email
 function loadProfileData() {
     const user = getCurrentUser();
     if (!user) return;
@@ -23,6 +24,7 @@ function loadProfileData() {
     }
 }
 
+// Verify matching inputs, update user password, and persist changes to storage
 function setupPasswordButton() {
     const savePasswordBtn = document.getElementById("save-password-btn");
     if (!savePasswordBtn) return;
@@ -48,6 +50,7 @@ function setupPasswordButton() {
     });
 }
 
+// Remove current user session and route back to landing page
 function setupSignOut() {
     const signOutBtn = document.querySelector(".settings-nav-item.text-danger");
     if (!signOutBtn) return;
@@ -58,6 +61,7 @@ function setupSignOut() {
     });
 }
 
+// Handle navigation switching between Public Profile and Change Password panels
 function setupTabs() {
     const navItems = document.querySelectorAll(
         ".settings-nav-item:not(.text-danger)"

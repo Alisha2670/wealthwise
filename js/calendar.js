@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCalendarNavigation();
 });
 
+// Attach navigation listeners for Previous Month, Next Month, and Today controls
 function setupCalendarNavigation() {
     const prevBtn = document.querySelectorAll(".calendar-nav-btn")[0];
     const todayBtn = document.querySelector(".calendar-controls .btn-secondary");
@@ -38,6 +39,7 @@ function setupCalendarNavigation() {
     });
 }
 
+// Construct 7-column calendar grid aligning 1st of month with day-of-week and padding adjacent days
 function renderCalendar() {
     const user = getCurrentUser();
     if (!user) return;
@@ -90,7 +92,7 @@ function renderCalendar() {
     }
 
     const dailyEvents = {};
-
+// Map monthly inflows (green +) and outflows (red -) onto their corresponding calendar days
     if (user.transactions) {
         user.transactions.forEach((tx) => {
             const d = new Date(tx.date);
@@ -103,7 +105,7 @@ function renderCalendar() {
             }
         });
     }
-
+// Map completed financial goals and tasks (blue ✓) onto calendar projection
     if (user.tasks) {
         user.tasks.forEach((task) => {
             if (task.completed === true) {

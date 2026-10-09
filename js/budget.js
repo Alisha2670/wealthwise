@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupCreateBudgetButton();
 });
 
+// Compute monthly budget limits, current month expenditures, and remaining allowances
 function loadBudgetData() {
     const user = getCurrentUser();
     if (!user) return;
@@ -38,6 +39,7 @@ function loadBudgetData() {
     renderBudgets(user.budgets, expenses);
 }
 
+// Render category cards with dynamic progress bars and threshold status badges (On Track, Warning, Over Budget)
 function renderBudgets(budgets, expenses) {
     const gridContainer = document.querySelector(".grid.grid-cols-3");
     if (!gridContainer) return;
@@ -106,6 +108,7 @@ function renderBudgets(budgets, expenses) {
     });
 }
 
+// Manage budget modal operations: Create new budget, edit limits, and delete category budgets
 function setupCreateBudgetButton() {
     const addBtn = document.querySelector(".page-header .btn-primary");
     const modal = document.getElementById("budget-modal");

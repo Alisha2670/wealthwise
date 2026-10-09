@@ -15,6 +15,7 @@ function loadAnalyticsData() {
     renderCurrentMonthOverview(transactions);
 }
 
+// Compute category spending proportions and render zero-dependency CSS conic-gradient donut chart
 function renderDonutChart(transactions) {
     const expenses = (transactions || []).filter((tx) => tx && tx.type === "expense");
 
@@ -70,7 +71,7 @@ function renderDonutChart(transactions) {
     if (legendContainer) {
         legendContainer.innerHTML = "";
     }
-
+// Translate category percentages into degree stops to construct the conic-gradient string
     sortedCategories.forEach((cat, index) => {
         const name = cat[0];
         const amount = cat[1];
@@ -100,6 +101,7 @@ function renderDonutChart(transactions) {
     }
 }
 
+// Aggregate expenses by merchant/title and display top 5 highest spending destinations
 function renderTopMerchants(transactions) {
     const expenses = (transactions || []).filter((tx) => tx && tx.type === "expense");
     let totalSpent = 0;
@@ -164,7 +166,7 @@ function renderTopMerchants(transactions) {
         container.insertAdjacentHTML("beforeend", html);
     });
 }
-
+// Compare current month total inflows against total outflows with animated comparative bars
 function renderCurrentMonthOverview(transactions) {
     let currentIncome = 0;
     let currentExpense = 0;

@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupFilters();
 });
 
+// Load financial tasks, filter by active category, and render pending vs completed sections
 function loadTasks() {
     const user = getCurrentUser();
     if (!user) return;
@@ -58,6 +59,7 @@ function loadTasks() {
     setupCheckboxes();
 }
 
+// Construct HTML template for individual task card with completion styling and priority tags
 function buildTaskHTML(task) {
     const checkedClass = task.completed ? "checked" : "";
     const checkIcon = task.completed
@@ -88,6 +90,7 @@ function buildTaskHTML(task) {
     `;
 }
 
+// Handle task submission and append new task to user's agenda with timestamp
 function setupAddTask() {
     const addBtn = document.querySelector(".add-task-row .btn-primary");
     const inputEl = document.querySelector(".add-task-input");
@@ -114,6 +117,7 @@ function setupAddTask() {
     });
 }
 
+// Bind click handlers to toggle task completion state and delete tasks from checklist
 function setupCheckboxes() {
     const checkboxes = document.querySelectorAll(".todo-checkbox");
     checkboxes.forEach((box) => {
@@ -143,6 +147,7 @@ function setupCheckboxes() {
     });
 }
 
+// Filter tasks dynamically by All Tasks, Bills, or Goals
 function setupFilters() {
     const filterBtns = document.querySelectorAll(".filter-category-btn");
     filterBtns.forEach((btn) => {

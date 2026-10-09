@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupThemeToggles();
 });
 
+// Read saved theme preference from storage and apply dark/light data attribute to document root
 function initTheme() {
     const savedTheme = localStorage.getItem("wealthwisep_theme");
     if (savedTheme === "dark") {
@@ -14,6 +15,7 @@ function initTheme() {
     }
 }
 
+// Bind click and change events to navbar theme buttons and settings toggle switch
 function setupThemeToggles() {
     const moonBtns = document.querySelectorAll(
         ".action-btn .fa-moon, .action-btn .fa-sun"
@@ -37,6 +39,7 @@ function setupThemeToggles() {
     });
 }
 
+// Switch theme state between light and dark, persist to localStorage, and update UI icons
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     if (currentTheme === "dark") {
@@ -50,6 +53,7 @@ function toggleTheme() {
     }
 }
 
+// Synchronize moon/sun FontAwesome icons and checkbox states with active theme
 function updateTogglesUI(isDark) {
     const icons = document.querySelectorAll(
         ".action-btn .fa-moon, .action-btn .fa-sun"

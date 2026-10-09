@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setupFilters();
 });
 
+// Load and apply active source and time filters to income ledger
 function loadIncomeData() {
     const user = getCurrentUser();
     if (!user) return;
     applyFilters();
 }
 
+// Populate the income ledger table with cleared earnings and delete action buttons
 function renderIncomeTable(incomes) {
     const tableBody = document.querySelector(".data-table tbody");
     if (!tableBody) return;
@@ -46,6 +48,7 @@ function renderIncomeTable(incomes) {
     });
 }
 
+// Prompt confirmation, delete income record by ID, and auto-recalculate summary metrics
 window.deleteIncomeTransaction = function (id) {
     if (confirm("Are you sure you want to delete this income record?")) {
         const user = getCurrentUser();
@@ -65,6 +68,7 @@ function setupFilters() {
     timeFilter.addEventListener("change", applyFilters);
 }
 
+// Filter inflows by category and date range (Month, Year, All Time) and compute dynamic totals
 function applyFilters() {
     const user = getCurrentUser();
     if (!user) return;

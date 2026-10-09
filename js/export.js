@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupExportButton();
 });
 
+// Web Worker script string: formats transaction ledger into RFC-4180 compliant CSV off the main thread
 const csvWorkerCode = `
 self.onmessage = function(e) {
     const transactions = e.data;
@@ -32,6 +33,7 @@ self.onmessage = function(e) {
 };
 `;
 
+// Detect export buttons across views and trigger non-blocking CSV compilation on click
 function setupExportButton() {
     const buttons = document.querySelectorAll(".btn-secondary");
     let exportBtn = null;
@@ -56,6 +58,7 @@ function setupExportButton() {
     });
 }
 
+// Spawn in-memory Web Worker via Blob URL with automatic fallback to main thread if restricted
 function exportWithWebWorker(transactions) {
     if (window.Worker && window.Blob) {
         try {
@@ -91,6 +94,7 @@ function fallbackExport(transactions) {
     triggerDownload(csvString, "WealthWise_Financial_Report.csv");
 }
 
+// Main-thread fallback for CSV generation when Web Workers are blocked by browser security
 function generateCSV(transactions) {
     const headers = ["Date", "Type", "Category", "Title", "Amount"];
     let csvContent = headers.join(",") + "\n";
@@ -114,6 +118,7 @@ function generateCSV(transactions) {
     return csvContent;
 }
 
+// Generate transient download URL from Blob and trigger browser file download via ghost anchor
 function triggerDownload(csvContent, filename) {
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const downloadUrl = URL.createObjectURL(blob);

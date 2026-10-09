@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setupFilters();
 });
 
+// Load and apply active category and time filters to expense ledger
 function loadExpensesData() {
     const user = getCurrentUser();
     if (!user) return;
     applyFilters();
 }
 
+// Populate the expense ledger table with outflows, category tags, and delete action buttons
 function renderExpensesTable(expenses) {
     const tableBody = document.querySelector(".data-table tbody");
     if (!tableBody) return;
@@ -46,6 +48,7 @@ function renderExpensesTable(expenses) {
     });
 }
 
+// Prompt confirmation, delete expense record by ID, and recalculate summary metrics
 window.deleteExpenseTransaction = function (id) {
     if (confirm("Are you sure you want to delete this expense record?")) {
         const user = getCurrentUser();
@@ -65,6 +68,7 @@ function setupFilters() {
     timeFilter.addEventListener("change", applyFilters);
 }
 
+// Filter outflows by category and date range, computing dynamic totals and top spending category
 function applyFilters() {
     const user = getCurrentUser();
     if (!user) return;

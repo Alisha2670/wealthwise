@@ -1,3 +1,4 @@
+// Format numeric values to Indian Rupee (INR ₹) standard using native Intl API
 function formatCurrency(amount) {
     if (isNaN(amount) || amount === null) {
         amount = 0;
@@ -7,6 +8,7 @@ function formatCurrency(amount) {
         currency: "INR"
     }).format(amount);
 }
+// Convert standard date strings into human-readable format (e.g., 'Oct 15, 2026')
 
 function formatDate(dateString) {
     if (!dateString) {
@@ -19,7 +21,7 @@ function formatDate(dateString) {
         year: "numeric"
     }).format(date);
 }
-
+// Generate a unique pseudo-random alphanumeric ID for transactions, budgets, and tasks
 function generateId() {
     return Math.random().toString(36).substring(2, 9);
 }
