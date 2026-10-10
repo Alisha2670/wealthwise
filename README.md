@@ -157,7 +157,11 @@ WealthWisep/
 │   ├── dashboard.css   # Sidebar, topbar, cards & chart layouts
 │   ├── pages.css       # Tables, pills, badges & progress bars
 │   ├── responsive.css  # Tablet & mobile media queries
-│   └── auth.css        # Glassmorphic auth card styles
+│   ├── auth.css        # Glassmorphic auth card styles
+│   ├── landing.css     # Landing page hero, 3D mockup & CTA sections
+│   ├── analytics.css   # Donut chart & legend layout
+│   ├── calendar.css    # 7-column grid layout, date cells & event badges
+│   └── settings.css    # Preferences layout, avatar preview & toggle switches
 │
 └── js/
     ├── helpers.js      # Currency (₹), date formatters & sanitizers
