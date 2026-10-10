@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Meta & Stylesheets -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Analytics & Reports - WealthWise">
     <title>Analytics - WealthWise</title>
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <!-- Local CSS -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/style.css">
@@ -19,6 +22,7 @@
 </head>
 <body>
     <div class="app-layout">
+        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="index.html" class="sidebar-brand">
@@ -55,6 +59,7 @@
                     <i class="fa-solid fa-gear"></i> Settings
                 </a>
             </nav>
+             <!-- User Profile Footer -->
             <div class="sidebar-footer">
                 <div class="user-profile">
                     <div class="user-avatar">JD</div>
@@ -65,7 +70,9 @@
                 </div>
             </div>
         </aside>
+        <!-- Main Content Area -->
         <main class="main-content">
+            <!-- Top Navbar -->
             <header class="top-navbar">
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
                     <i class="fa-solid fa-bars"></i>
@@ -78,6 +85,7 @@
                 </div>
             </header>
             <div class="dashboard-container">
+                <!-- Page Header -->
                 <div class="page-header animate-slide-up">
                     <div>
                         <h1 style="margin-bottom: 0.25rem;">Analytics & Reports</h1>
@@ -87,6 +95,7 @@
                         <button class="btn btn-secondary"><i class="fa-solid fa-download"></i> Download Report</button>
                     </div>
                 </div>
+                <!-- Cash Flow Comparison Card -->
                 <div class="card animate-slide-up delay-100 mb-8" style="padding: var(--spacing-6);">
                     <div class="chart-header" style="margin-bottom: var(--spacing-6);">
                         <div>
@@ -115,7 +124,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Donut Chart & Top Merchants -->
                 <div class="grid grid-cols-2 gap-8 animate-slide-up delay-200">
+                    <!-- Donut Chart -->
                     <div class="card">
                         <h3 class="chart-title mb-6" style="color: var(--color-secondary);">Expense Distribution</h3>
                         <div class="flex flex-col items-center gap-8">
@@ -145,6 +156,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Top Merchants List -->
                     <div class="card">
                         <h3 class="chart-title mb-6" style="color: var(--color-secondary);">Top Merchants</h3>
                         <div class="flex flex-col gap-6">
@@ -214,6 +226,7 @@
             </div>
         </main>
     </div>
+     <!-- Scripts -->
     <script src="js/helpers.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/app.js"></script>

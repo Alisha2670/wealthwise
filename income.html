@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Meta & Stylesheets -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Income Management - WealthWise">
     <title>Income - WealthWise</title>
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Local CSS -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/style.css">
@@ -18,6 +21,7 @@
 </head>
 <body>
     <div class="app-layout">
+        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <a href="index.html" class="sidebar-brand">
@@ -54,6 +58,7 @@
                     <i class="fa-solid fa-gear"></i> Settings
                 </a>
             </nav>
+             <!-- User Profile Footer -->
             <div class="sidebar-footer">
                 <div class="user-profile">
                     <div class="user-avatar">JD</div>
@@ -64,7 +69,9 @@
                 </div>
             </div>
         </aside>
+        <!-- Main Content Area -->
         <main class="main-content">
+            <!-- Top Navbar -->
             <header class="top-navbar">
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
                     <i class="fa-solid fa-bars"></i>
@@ -77,12 +84,14 @@
                 </div>
             </header>
             <div class="dashboard-container">
+                <!-- Page Header -->
                 <div class="page-header animate-slide-up">
                     <div>
                         <h1 style="margin-bottom: 0.25rem;">Income Management</h1>
                         <p class="text-muted" style="margin-bottom: 0;">Track your earnings, salary, and side hustles.</p>
                     </div>
                 </div>
+                 <!-- Metric Cards -->
                 <div class="page-summary-grid animate-slide-up delay-100" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="card metric-card">
                         <div class="metric-header">
@@ -99,6 +108,7 @@
                         <div class="metric-value" id="income-highest-category">Salary</div>
                     </div>
                 </div>
+                 <!-- Filter Controls & Export -->
                 <div class="filter-bar animate-slide-up delay-200">
                     <div class="filter-group">
                         <select id="filter-source" class="form-control" style="width: 150px; padding: 8px 12px; font-size: 14px;">
@@ -116,6 +126,7 @@
                     </div>
                     <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;"><i class="fa-solid fa-file-export"></i> Export CSV</button>
                 </div>
+                <!-- Income Transactions Table -->
                 <div class="data-table-container animate-slide-up delay-300">
                     <table class="data-table">
                         <thead>
@@ -200,6 +211,7 @@
             </div>
         </main>
     </div>
+    <!-- Scripts -->
     <script src="js/helpers.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/app.js"></script>
